@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "insta backend",
+  "description": "instagram backend",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -14,11 +14,16 @@
   "author": "Rajan",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
+    "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "uuid": "^9.0.0",
+    "validator": "^13.9.0"
   }
 }
