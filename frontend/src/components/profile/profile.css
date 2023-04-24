@@ -1,0 +1,13 @@
+.img-div {
+    margin: 30px;
+    cursor: pointer;
+}
+.img-div img {
+    width: 335px;
+    height: 335px;
+    margin: 0 2px;
+    border-radius: 2px;
+}
+.img-div img:hover {
+    opacity: 0.95;
+}

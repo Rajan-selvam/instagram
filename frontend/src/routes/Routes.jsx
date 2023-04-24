@@ -3,8 +3,17 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 
+export const Loadable = (Component) => (props) => {
+    return (
+        <Suspense fallback={<>Loading..</>}>
+            <Component {...props} />
+        </Suspense>
+    )
+}
+
 const Home = Loadable(lazy(() => import("../pages/Home")));
 const Profile = Loadable(lazy(() => import("../pages/Profile")));
+const CreatePost = Loadable(lazy(() => import("../pages/CreatePost")));
 const Login = Loadable(lazy(() => import("../pages/Login")));
 const SignUp = Loadable(lazy(() => import("../pages/SignUp")));
 
@@ -14,12 +23,16 @@ export const router = createBrowserRouter([
         element: <AuthenticatedRoute />,
         children: [
             {
-                index: true,
+                path: "",
                 element: <Layout layout="main" />,
                 children: [
                     {
-                        index: true,
+                        path: "",
                         element: <Home />
+                    },
+                    {
+                        path: "/create-post",
+                        element: <CreatePost />
                     },
                     {
                         path: "/profile",
@@ -39,14 +52,6 @@ export const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <Navigate to="/404" replace />
+        element: <Navigate to="/" replace />
     },
 ]);
-
-export const Loadable = (Component) => (props) => {
-    return (
-        <Suspense fallback={<>Loading..</>}>
-            <Component {...props} />
-        </Suspense>
-    )
-}

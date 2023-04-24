@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 // import { getToken } from "../utills/auth";
 
 const AuthenticatedRoute = () => {
@@ -6,3 +6,5 @@ const AuthenticatedRoute = () => {
     return <Outlet />
     // return validUser ? <Outlet /> : <Navigate to="/home" />
 }
+
+export default AuthenticatedRoute;

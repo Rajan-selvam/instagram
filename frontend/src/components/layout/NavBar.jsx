@@ -1,23 +1,36 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import PropTypes from "prop-types";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
-const navItems = ['LogIn', 'SignIn', 'Profile'];
+const navItems = [
+  {
+    title: `LogIn`,
+    path: `/login`,
+  },
+  {
+    title: `SignUp`,
+    path: `/sign-up`,
+  },
+  {
+    title: `Profile`,
+    path: `/profile`,
+  },
+];
 
 const NavBar = (props) => {
   const { window } = props;
@@ -29,16 +42,25 @@ const NavBar = (props) => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography
+        variant="h6"
+        sx={{ my: 2 }}
+        onClick={() => navigate("/")}
+        className="logo"
+      >
         Instagram
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+          <ListItem
+            key={item.title}
+            disablePadding
+            onClick={() => navigate(item.path)}
+          >
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -46,40 +68,42 @@ const NavBar = (props) => {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" sx={{ backgroundColor: "#fff" }}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon /> 
-            <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, paddingLeft: "10px" }}
-          >
-            Instagram
-          </Typography>
+            <MenuIcon sx={{ color: "black" }}/>
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          <Box>
+            <Button
+              sx={{ flexGrow: 1, color: "black" }}
+              onClick={() => navigate("/")}
+              className="logo"
+            >
+              Instagram
+            </Button>
+          </Box>
+          <Box
+            sx={{ marginLeft: "auto", display: { xs: "none", sm: "block" } }}
           >
-            Instagram
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }} onClick={() => navigate('/login')}>
-                {item}
+              <Button
+                key={item.title}
+                sx={{ color: "black" }}
+                onClick={() => navigate(item.path)}
+              >
+                {item.title}
               </Button>
             ))}
           </Box>
@@ -95,19 +119,22 @@ const NavBar = (props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: 1 }}>
         <Toolbar />
       </Box>
     </Box>
   );
-}
+};
 
 AppBar.propTypes = {
   window: PropTypes.func,

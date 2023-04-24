@@ -1,0 +1,46 @@
+.profileContainer {
+    height: 100vh;
+    overflow-y: scroll;
+}
+.profilePicture {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
+.nameContainer {
+    display: flex;
+    font-weight: 600;
+}
+.postContainer {
+    display: flex;
+}
+.postContainer p {
+    padding-right: 30px;
+}
+.editProfile {
+    margin-left: 15px;
+    padding: 5px 15px;
+    background-color: #eee;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.bioContainer p {
+    line-height: 5px;
+}
+.bioContainer p:first-child {
+    font-weight: 600;
+}
+.bioUrl {
+    color: rgb(3, 28, 119);
+    font-weight: 500;
+    cursor: pointer;
+}
+.homeContainer {
+    height: 100vh;
+    overflow-y: scroll;
+}
