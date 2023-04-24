@@ -11,7 +11,7 @@ const Profile = () => {
     <div className={styles.profileContainer}>
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Grid container spacing={5} className={styles.profileDetails}>
-        <Grid md={4} sm={3} className={styles.profilePicture}>
+        <Grid md={5} sm={8} className={styles.profilePicture}>
             <Avatar className={styles.avatar} src="https://res.cloudinary.com/dx1do1dxo/image/upload/v1659014445/samples/IMG_20220401_113843_2_wkwrxv.jpg" />
         </Grid>
         <Grid md={5} sm={3} className={styles.details}>
